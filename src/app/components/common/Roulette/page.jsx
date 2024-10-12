@@ -54,6 +54,9 @@ const Roulette = ({ onClose }) => {
 
   return (
     <div className="roulette-container w-full h-auto flex justify-center items-center relative">
+      <div className="w-full roulette-instruction">
+        버튼을 눌러 룰렛을 돌리세요
+      </div>
       {/* 룰렛판 이미지 */}
       <div
         className={`roulette-wheel flex justify-center items-center ${spinning ? 'spinning' : ''} relative`} // Keep the wheel relative to center the button inside

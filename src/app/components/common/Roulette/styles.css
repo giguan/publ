@@ -16,23 +16,53 @@
   }
   
   /* 중앙 버튼 위치 및 크기 조정 */
-  .center-button {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 20;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    cursor: pointer;
+.center-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  animation: pulse2 1.5s infinite ease-in-out; /* Add pulse animation */
+}
+
+/* 버튼에 대한 애니메이션 */
+@keyframes pulse2 {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
   }
-  
-  .spin-button {
-    background: transparent;
-    padding: 0;
-    border: none;
-    cursor: pointer;
-    z-index: 20;
+  50% {
+    transform: translate(-50%, -50%) scale(1.25); /* Scale up slightly */
   }
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+/* 룰렛 시작 문구 스타일 */
+.roulette-instruction {
+  position: absolute;
+  top: -60px; /* Adjust to position above the roulette */
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 18px;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px 20px;
+  border-radius: 10px;
+  z-index: 30;
+  text-align: center;
+}
+
+.spin-button {
+  background: transparent;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+  z-index: 20;
+}
   
   
   /* 핀 위치 및 크기 조정 */

@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useTransition } from 'react';
 import Link from 'next/link';
 import Images from 'next/image';
 import localFont from "next/font/local";
@@ -9,6 +9,7 @@ import Sidebar from "./components/common/Sidebar";
 import Banner from "./components/common/Banner";
 import Footer from "./components/common/Footer";
 import Roulette from "./components/common/Roulette/page";
+import SplashScreen from './components/common/SplashScreen/page';
 
 import './globals.css'
 
@@ -27,6 +28,13 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { MdOutlineCancel } from "react-icons/md";
+
+import { usePathname, useRouter } from 'next/navigation';
+import NProgress from 'nprogress';
+import 'nprogress/nprogress.css';
+import './nprogress.css';
+
+NProgress.configure({ showSpinner: true });
 // RootLayout 컴포넌트
 export default function RootLayout({ children }) {
 
@@ -65,7 +73,7 @@ export default function RootLayout({ children }) {
       progress: undefined,
     });
   };
-
+  
   // Function to display an error toast
   const showErrorMessage = (message) => {
     toast.error(message, {
@@ -78,19 +86,37 @@ export default function RootLayout({ children }) {
       progress: undefined,
     });
   };
+  const pathname = usePathname();
+  const [isLoading, setIsLoading] = useState(false); 
+
+  useEffect(() => {
+    // 페이지 이동 시작 시 NProgress 시작
+    setIsLoading(true);
+    NProgress.start();
+
+    // 페이지 이동이 완료되면 NProgress 종료
+    setIsLoading(false);
+    NProgress.done();
+
+  }, [pathname]); // pathname이 변경될 때마다 실행
+
+
 
   // 사이드바 열릴 때 메인 화면 스크롤 비활성화
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'auto';
-    }
+    // 페이지 이동 시작 시 NProgress 시작
+    NProgress.start();
+    console.log("NProgress 시작");
 
-    return () => {
-      document.body.style.overflow = 'auto';
-    };
-  }, [isOpen]);
+    // 경로 변경 완료 후 약간의 딜레이 후 NProgress 종료
+    const timer = setTimeout(() => {
+      NProgress.done();
+      console.log("NProgress 완료");
+    }, 100); // 0.5초 후 NProgress 완료
+
+    return () => clearTimeout(timer); // 경로 변경 중 다른 이벤트 발생 시 기존 타이머 정리
+
+  }, [pathname]);
 
   return (
     <html lang="en">
@@ -103,6 +129,9 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ToastContainer />
+        {isLoading && 
+          <SplashScreen/>
+        }
         <Header setIsOpen={setIsOpen} setIsLoginOpen={setIsLoginOpen} loginCheck={loginCheck} setIsInfoOpen={setIsInfoOpen}/>
         <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
         <div className="bg-[#F2F2F2]">
@@ -114,8 +143,8 @@ export default function RootLayout({ children }) {
           <main className="w-[80vw] mx-auto flex justify-center align-center">
             {children}
           </main>
+          <Footer />
         </div>
-        <Footer />
 
         {isLoginOpen && (
           <div 

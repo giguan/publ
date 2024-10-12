@@ -1,0 +1,12 @@
+/* 2행으로 슬라이드 레이아웃을 배치하기 위한 스타일 */
+.swiper-slide {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .news-card {
+    flex: 0 0 48%; /* 각 카드의 너비를 50%로 설정하여 2개씩 한 행에 배치 */
+    margin-bottom: 20px; /* 행 사이의 간격 */
+  }
+  

@@ -1,0 +1,20 @@
+/* styles/nprogress.css */
+#nprogress {
+    pointer-events: none; /* 로딩 중일 때 사용자가 상호작용하지 않도록 설정 */
+    z-index: 9999; /* z-index 값을 크게 설정하여 다른 요소 위에 표시 */
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+    
+}
+  
+#nprogress .bar {
+    background: #29d; /* 로딩 바 색상 */
+    position: fixed;
+    z-index: 9999; /* 바가 최상단에 위치 */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px; /* 바의 두께 */
+}
+  

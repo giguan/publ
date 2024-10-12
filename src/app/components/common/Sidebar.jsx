@@ -76,10 +76,10 @@ const Sidebar = ({isOpen, setIsOpen}) => {
                         {/* 서브 메뉴 */}
                         <ul className="absolute left-full top-[-7px] hidden w-80 h-auto group-hover:flex flex-col p-4 space-y-4">
                             <li className="text-lg font-medium cursor-pointer hover:text-purple-500">
-                                <Link href="/events1" onClick={()=>setIsOpen(false)}>이벤트1</Link>
+                                <Link href="/events2" onClick={()=>setIsOpen(false)}>이벤트1</Link>
                             </li>
                             <li className="text-lg font-medium cursor-pointer hover:text-purple-500">
-                                <Link href="/events2" onClick={()=>setIsOpen(false)}>이벤트2</Link>
+                                <Link href="/events1" onClick={()=>setIsOpen(false)}>이벤트2</Link>
                             </li>
                             <li className="text-lg font-medium cursor-pointer hover:text-purple-500">돌발이벤트</li>
                             <li className="text-lg font-medium cursor-pointer hover:text-purple-500">회원참여이벤트</li>
@@ -102,8 +102,12 @@ const Sidebar = ({isOpen, setIsOpen}) => {
                             <li className="text-lg font-medium cursor-pointer hover:text-purple-500">
                                 <Link href="/community" onClick={()=>setIsOpen(false)}>커뮤니티</Link>
                             </li>
-                            <li className="text-lg font-medium cursor-pointer hover:text-purple-500">뉴스</li>
-                            <li className="text-lg font-medium cursor-pointer hover:text-purple-500">자유게시판</li>
+                            <li className="text-lg font-medium cursor-pointer hover:text-purple-500">
+                            <Link href="/community/news" onClick={()=>setIsOpen(false)}>뉴스</Link>
+                            </li>
+                            <li className="text-lg font-medium cursor-pointer hover:text-purple-500">
+                                <Link href="/board/list" onClick={()=>setIsOpen(false)}>자유게시판</Link>
+                            </li>
                             <li className="text-lg font-medium cursor-pointer hover:text-purple-500">회원분석공유</li>
                         </ul>
                     </li>
