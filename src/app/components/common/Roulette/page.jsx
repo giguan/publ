@@ -1,4 +1,6 @@
-import { useEffect, useState } from 'react';
+"use client"
+
+import { useState } from 'react';
 import Images from 'next/image';
 import Image from 'next/image';
 import './styles.css'; // Add your styles for animation and layout here
