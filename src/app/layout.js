@@ -24,6 +24,7 @@ const geistMono = localFont({
 });
 
 import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import { MdOutlineCancel } from "react-icons/md";
 // RootLayout 컴포넌트
