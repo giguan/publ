@@ -187,7 +187,7 @@ export default function RootLayout({ children }) {
               </button>
               <div className="flex justify-between items-center mt-4">
                 <a href="#" className="text-gray-500 text-sm">비밀번호 재설정</a>
-                <a href="#" className="text-gray-500 text-sm">회원가입</a>
+                <Link href="/signup" className="text-gray-500 text-sm">회원가입</Link>
               </div>
               <div className="flex justify-center mt-6 space-x-4">
                 <a href="#" className="w-10 h-10 rounded-full bg-gray-200 flex justify-center items-center">
@@ -236,7 +236,12 @@ export default function RootLayout({ children }) {
                 {/* 로그아웃 & 출석체크 버튼 */}
                 <div className="flex justify-center space-x-4 mt-4">
                   <button onClick={handleLogout} className="bg-gray-500 text-white py-2 px-4 rounded-lg">로그아웃하기</button>
-                  <button className="bg-green-500 text-white py-2 px-4 rounded-lg">출석체크하기</button>
+                  <Link 
+                    href="/attendance"
+                    className="bg-green-500 text-white py-2 px-4 rounded-lg"
+                    onClick={() => setIsInfoOpen(false)} 
+                  >
+                    출석체크하기</Link>
                 </div>
               </div>
 

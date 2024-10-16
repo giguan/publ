@@ -123,6 +123,12 @@ const Sidebar = ({isOpen, setIsOpen}) => {
                             <span><span><Link href="/guarantee" onClick={()=>setIsOpen(false)}>보증업체</Link></span></span>
                         </div>
                     </li>
+
+                    <li className="relative group w-60 md:w-64 lg:w-80">
+                        <div className="flex justify-between items-center p-2 hover:bg-purple-100 hover:text-purple-700 cursor-pointer">
+                            <span><span><Link href="/faq" onClick={()=>setIsOpen(false)}>고객센터</Link></span></span>
+                        </div>
+                    </li>
                   
                 </ul>
             </div>
