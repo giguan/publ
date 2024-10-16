@@ -31,7 +31,7 @@ const Faq = () => {
 
                         </div>
 
-                        <FaqSesscion/>
+                        <FaqSession/>
                         
 
 
@@ -147,7 +147,7 @@ const Faq = () => {
 export default Faq;
 
 
-function FaqSesscion() {
+function FaqSession() {
     // 상위 컴포넌트에서 openIndex와 activeTab을 관리
     const [openIndex, setOpenIndex] = useState(null);
     const [activeTab, setActiveTab] = useState('전체'); // 기본 탭은 '전체'로 설정
@@ -162,11 +162,9 @@ function FaqSesscion() {
     };
   
     const handleHeaderClick = (index) => {
-      // 전체 탭을 활성화하고 해당 질문을 열도록 설정
       setActiveTab('전체');
       toggleCollapse(index);
-      
-      // 해당 항목으로 스크롤
+  
       faqRefs.current[index]?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     };
   
@@ -174,12 +172,11 @@ function FaqSesscion() {
       <div className="container mx-auto p-6">
         {/* 헤더 섹션 */}
         <section className="p-4">
-          <div className="flex justify-evenly items-center">
-            <div>
+          <div className="flex flex-col lg:flex-row justify-between items-center">
+            <div className="w-full lg:w-1/2 mb-6 lg:mb-0">
               <h2 className="text-2xl font-bold text-gray-700">무엇을 도와드릴까요?</h2>
               <ul className="mt-4 space-y-2 font-semibold text-gray-500">
-                {/* 헤더의 질문을 클릭하면 해당 질문의 Collapse가 열리고 스크롤 */}
-                <li className="flex items-center ">
+                <li className="flex items-center">
                   <span className="text-lg font-semibold w-8 h-8 flex border justify-center items-center rounded-full shadow-md text-[#35C6F0]">Q</span>
                   <p className="ml-2 cursor-pointer" onClick={() => handleHeaderClick(0)}>질문1?</p>
                 </li>
@@ -201,19 +198,16 @@ function FaqSesscion() {
                 </li>
               </ul>
             </div>
-            <div className="bg-gray-100 p-4 rounded-lg shadow-md text-center">
+            <div className="w-full lg:w-1/3 bg-gray-100 p-4 rounded-lg shadow-md text-center">
               <h3 className="font-medium text-left font-bold text-lg text-gray-700">고객센터 <span className='ml-2 text-[#35C6F0]'>09:00 ~ 18:00</span></h3>
-              <div className='text-left p-2 text-gray-400'>
+              <div className='text-left p-2 text-gray-400 text-sm'>
                 <p> • 평일: 전체 문의 상담</p>
                 <p> • 토요일, 공휴일: 오늘의집 직배송 주문건 상담</p>
                 <p> • 일요일: 휴무</p>
               </div>
               <a href="tel:1670-0876" className="block text-blue-500 font-semibold">1670-0876</a>
               <button className="w-full bg-[#35C6F0] text-white py-2 px-4 rounded-lg mt-2">1:1 카톡 상담하기</button>
-              <div className="flex gap-2 mt-2">
-                <button className="border border-gray-300 px-4 py-2 rounded-lg text-gray-700 whitespace-nowrap">이메일 문의하기</button>
-                <button className="border border-gray-300 px-4 py-2 rounded-lg text-gray-700 whitespace-nowrap">이메일 주소 복사하기</button>
-              </div>
+              <button className="w-full border border-gray-300 px-4 py-2 rounded-lg text-gray-700 whitespace-nowrap mt-2">이메일 문의하기</button>
             </div>
           </div>
         </section>
@@ -227,7 +221,6 @@ function FaqSesscion() {
   }
   
   function FAQSection({ openIndex, toggleCollapse, activeTab, setActiveTab, faqRefs }) {
-    // 탭별 질문 목록
     const questions = {
       전체: [
         '어떻게 구매하나요?',
@@ -253,11 +246,11 @@ function FaqSesscion() {
     return (
       <section className="mt-8">
         {/* 탭 메뉴 */}
-        <div className="flex gap-4 border-b-2 pb-2 mb-4">
+        <div className="flex gap-4 border-b-2 pb-2 mb-4 overflow-x-auto">
           {['전체', '주문', '결제', '배송'].map((tab) => (
             <button
               key={tab}
-              className={`px-4 py-2 ${activeTab === tab ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600'}`}
+              className={`px-4 py-2 whitespace-nowrap ${activeTab === tab ? 'border-b-2 border-blue-500 text-blue-500' : 'text-gray-600'}`}
               onClick={() => setActiveTab(tab)}
             >
               {tab}
@@ -279,7 +272,6 @@ function FaqSesscion() {
                 </button>
                 {openIndex === index && (
                   <div className="mt-2 text-gray-600">
-                    {/* 각 질문에 대한 답변을 추가 */}
                     해당 질문에 대한 자세한 답변이 이곳에 표시됩니다.
                   </div>
                 )}
@@ -290,4 +282,3 @@ function FaqSesscion() {
       </section>
     );
   }
-  
